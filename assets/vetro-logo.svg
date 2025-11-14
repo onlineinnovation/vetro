@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="80" viewBox="0 0 300 80" role="img" aria-labelledby="title desc">
+  <title id="title">Vetro logotyp</title>
+  <desc id="desc">Logotyp för Vetro med blå checkmark och texten VETRO.se</desc>
+  <rect width="300" height="80" fill="#ffffff" rx="6" />
+  <g fill="#66b1e1">
+    <path d="M108 54L140 18L152 30L120 66Z" />
+    <path d="M146 26L214 4L220 18L160 56Z" />
+  </g>
+  <text x="24" y="52" font-family="'Inter', 'Arial Black', 'Segoe UI', sans-serif" font-size="44" font-weight="700" fill="#1c1f23" letter-spacing="2">
+    VETRO
+  </text>
+  <text x="214" y="52" font-family="'Inter', 'Arial', sans-serif" font-size="28" font-weight="500" fill="#1c1f23">
+    .se
+  </text>
+  <text x="262" y="22" font-family="'Inter', 'Arial', sans-serif" font-size="12" font-weight="600" fill="#1c1f23">®</text>
+</svg>
