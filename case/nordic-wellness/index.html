@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="sv">
   <head>
-    <meta charset="utf-8" />
+  <meta charset="utf-8" />
+  <meta name="description" content="Vetro installerade robusta och hygieniska duschbås i flera Nordic Wellness-anläggningar i Stockholm — hållbara lösningar med låg driftkostnad.">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Case: Nordic Wellness — Duschbåsinstallation i Stockholm</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,6 +18,7 @@
           <div class="flex items-center gap-3">
             <a href="/index.html"><img src="https://vetro.se/wp-content/uploads/2023/05/Vetro-Logo-V-4.png" alt="Vetro" class="h-10" /></a>
             <span class="hidden text-lg font-semibold sm:inline">Case: Nordic Wellness</span>
+                <!-- mobile menu logic moved to /assets/js/site.js -->
           </div>
           <div class="hidden md:flex items-center gap-6 text-sm font-medium">
             <a href="/produkter/" class="transition hover:text-brand-light">Produkter</a>
@@ -34,7 +36,30 @@
             </div>
             <a href="/index.html#contact" class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-white/20">Kontakta oss</a>
           </div>
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" aria-expanded="false" class="mobile-menu-btn inline-flex items-center justify-center rounded-lg p-2 bg-white/10 text-slate-900">
+              <span class="sr-only">Öppna meny</span>
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+          </div>
         </nav>
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white text-slate-900">
+          <div class="px-6 py-4 space-y-2">
+            <a href="/produkter/" class="block py-2">Produkter</a>
+            <a href="/index.html#features" class="block py-2">Lösningar</a>
+            <div>
+              <button id="mobile-referenser-btn" class="w-full text-left py-2 flex items-center justify-between">Referenser <span>▾</span></button>
+              <div id="mobile-referenser-list" class="hidden pl-4">
+                <a href="/case/duschbas-for-offentliga-miljoer/" class="block py-2">Duschbås för offentliga miljöer</a>
+                <a href="/case/privat-glasblock/" class="block py-2">Privat installation — glasblock</a>
+                <a href="/case/nordic-wellness/" class="block py-2">Nordic Wellness — Stockholm</a>
+              </div>
+            </div>
+            <a href="/index.html#contact" class="block py-2">Kontakta oss</a>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -84,5 +109,17 @@
     </footer>
 
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/assets/js/site.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Nordic Wellness — Duschbåsinstallation i Stockholm",
+      "description": "Vetro installerade robusta och hygieniska duschbås i flera Nordic Wellness-anläggningar i Stockholm — hållbara lösningar med låg driftkostnad.",
+      "image": "https://nordicwellness.se/media/jjled1po/slide_012.jpg?width=2200&format=webp&quality=80&v=1db4a235b7ea9a0",
+      "author": { "@type": "Organization", "name": "Vetro AB", "url": "https://vetro.se/" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://duschteknik.se/case/nordic-wellness/" }
+    }
+    </script>
   </body>
 </html>

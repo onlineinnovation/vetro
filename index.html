@@ -50,7 +50,7 @@
         <div class="absolute inset-0 bg-slate-900/70"></div>
       </div>
       <div class="relative z-10">
-        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-white">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-white">
           <div class="flex items-center gap-3">
             <img
               src="assets/images/vetro-logo-provided.png"
@@ -58,6 +58,7 @@
               class="h-10"
             />
             <span class="hidden text-lg font-semibold sm:inline">Duschbås för offentlig miljö</span>
+                <!-- mobile menu logic moved to /assets/js/site.js -->
           </div>
           <div class="hidden items-center gap-8 text-sm font-medium md:flex">
             <div class="relative group">
@@ -84,7 +85,30 @@
             </div>
             <a href="#contact" class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20">Kontakta oss</a>
           </div>
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" aria-expanded="false" class="mobile-menu-btn inline-flex items-center justify-center rounded-lg p-2 bg-white/10 text-white">
+              <span class="sr-only">Öppna meny</span>
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+          </div>
         </nav>
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white text-slate-900">
+          <div class="px-6 py-4 space-y-2">
+            <a href="/produkter/" class="block py-2">Produkter</a>
+            <a href="/index.html#features" class="block py-2">Lösningar</a>
+            <div>
+              <button id="mobile-referenser-btn" class="w-full text-left py-2 flex items-center justify-between">Referenser <span>▾</span></button>
+              <div id="mobile-referenser-list" class="hidden pl-4">
+                <a href="/case/duschbas-for-offentliga-miljoer/" class="block py-2">Duschbås för offentliga miljöer</a>
+                <a href="/case/privat-glasblock/" class="block py-2">Privat installation — glasblock</a>
+                <a href="/case/nordic-wellness/" class="block py-2">Nordic Wellness — Stockholm</a>
+              </div>
+            </div>
+            <a href="/index.html#contact" class="block py-2">Kontakta oss</a>
+          </div>
+        </div>
         <section class="mx-auto flex max-w-6xl flex-col gap-12 px-6 pb-24 pt-16 text-white md:flex-row md:items-center">
           <div class="max-w-xl space-y-6">
             <p class="inline-flex rounded-full bg-white/10 px-4 py-1 text-sm font-medium uppercase tracking-wide">Skräddarsydda duschbås</p>
@@ -350,5 +374,6 @@
         });
       })();
     </script>
+    <script src="/assets/js/site.js"></script>
   </body>
 </html>

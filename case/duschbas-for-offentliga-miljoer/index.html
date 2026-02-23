@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="sv">
   <head>
-    <meta charset="utf-8" />
+  <meta charset="utf-8" />
+  <meta name="description" content="Vetro levererade robusta glasblockbaserade duschbås till Vallentuna kommun. Fem år efter installation rapporterades inga tekniska reklamationer och minskad vandalism.">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Case: Duschbås för offentliga miljöer — Vetro</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,7 +12,7 @@
     <style>body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}</style>
   </head>
   <body class="font-sans bg-slate-50 text-slate-900">
-    <header class="py-6">
+  <header class="py-6">
       <div class="mx-auto max-w-6xl px-6">
         <nav class="flex items-center justify-between">
           <div class="flex items-center gap-3">
@@ -35,6 +36,21 @@
             <a href="/index.html#contact" class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-white/20">Kontakta oss</a>
           </div>
         </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white text-slate-900">
+          <div class="px-6 py-4 space-y-2">
+            <a href="/produkter/" class="block py-2">Produkter</a>
+            <a href="/index.html#features" class="block py-2">Lösningar</a>
+            <div>
+              <button id="mobile-referenser-btn" class="w-full text-left py-2 flex items-center justify-between">Referenser <span>▾</span></button>
+              <div id="mobile-referenser-list" class="hidden pl-4">
+                <a href="/case/duschbas-for-offentliga-miljoer/" class="block py-2">Duschbås för offentliga miljöer</a>
+                <a href="/case/privat-glasblock/" class="block py-2">Privat installation — glasblock</a>
+                <a href="/case/nordic-wellness/" class="block py-2">Nordic Wellness — Stockholm</a>
+              </div>
+            </div>
+            <a href="/index.html#contact" class="block py-2">Kontakta oss</a>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -116,6 +132,18 @@
       </div>
     </footer>
 
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/assets/js/site.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Duscharna i Vallentuna — inga fel efter fem år",
+      "description": "Vetro levererade robusta glasblockbaserade duschbås till Vallentuna kommun. Fem år efter installation rapporterades inga tekniska reklamationer och minskad vandalism.",
+      "image": "https://vetro.se/wp-content/uploads/2019/01/2_4-2-1199x800.jpg",
+      "author": { "@type": "Organization", "name": "Vetro AB", "url": "https://vetro.se/" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://duschteknik.se/case/duschbas-for-offentliga-miljoer/" }
+    }
+    </script>
   </body>
 </html>
