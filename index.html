@@ -284,8 +284,13 @@
               <label for="message" class="text-sm font-semibold text-slate-700">Projektbeskrivning</label>
               <textarea id="message" name="message" rows="4" placeholder="Berätta kort om ert projekt" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required></textarea>
             </div>
-            <button type="submit" class="w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-brand/90">Skicka förfrågan</button>
+            <button id="submit-btn" type="submit" class="w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-brand/90">Skicka förfrågan</button>
             <p class="text-xs text-slate-500">Genom att skicka formuläret godkänner du att vi sparar dina uppgifter för att kunna kontakta dig.</p>
+            <!-- Inline client-side confirmation shown after submit while redirecting -->
+            <div id="form-status" class="mt-3 hidden items-center gap-2 text-sm text-brand" role="status" aria-live="polite">
+              <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+              <span id="form-status-text">Skickar förfrågan…</span>
+            </div>
           </form>
         </div>
         <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-500">© <span id="year"></span> Vetro AB. Alla rättigheter förbehållna.</div>
@@ -296,16 +301,32 @@
       document.getElementById('year').textContent = new Date().getFullYear();
       (function () {
         // Inject a dynamic subject into the hidden _subject field before submit
+        // and show a small client-side confirmation while the form is submitting.
         const form = document.getElementById('contact-form');
         const subjectInput = document.getElementById('_subject');
+        const submitBtn = document.getElementById('submit-btn');
+        const statusEl = document.getElementById('form-status');
+        const statusText = document.getElementById('form-status-text');
         if (!form || !subjectInput) return;
         form.addEventListener('submit', function () {
           const name = (document.getElementById('name') || {}).value || '';
-          const email = (document.getElementById('email') || {}).value || '';
-          let subj = 'Ny förfrågan från Vetro webbplats';
-          if (name) subj += ' — ' + name;
-          if (email) subj += ' (' + email + ')';
+          const company = (document.getElementById('company') || {}).value || '';
+          // Format: "Förfrågan: {name} — {company}" (omit company if empty)
+          let subj = 'Förfrågan: ' + name;
+          if (company) subj += ' — ' + company;
           subjectInput.value = subj;
+
+          // Show confirmation UI (disable button to prevent double submits)
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+          }
+          if (statusEl) {
+            statusEl.classList.remove('hidden');
+          }
+          if (statusText) {
+            statusText.textContent = 'Skickar förfrågan… Vi skickar dig vidare.';
+          }
         });
       })();
     </script>
