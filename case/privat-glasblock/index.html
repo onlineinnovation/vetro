@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Case: Privat installation med glasblock — Vetro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}</style>
+  </head>
+  <body class="font-sans bg-slate-50 text-slate-900">
+    <header class="py-6">
+      <div class="mx-auto max-w-6xl px-6">
+        <nav class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <a href="/index.html"><img src="https://vetro.se/wp-content/uploads/2023/05/Vetro-Logo-V-4.png" alt="Vetro" class="h-10" /></a>
+            <span class="hidden text-lg font-semibold sm:inline">Case: Privat installation</span>
+          </div>
+          <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="/produkter/" class="transition hover:text-brand-light">Produkter</a>
+            <a href="/index.html#features" class="transition hover:text-brand-light">Lösningar</a>
+            <a href="/case/" class="transition hover:text-brand-light">Referenser</a>
+            <a href="/index.html#contact" class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-white/20">Kontakta oss</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="py-12">
+      <div class="mx-auto max-w-6xl px-6">
+        <h1 class="text-3xl font-semibold">Privat installation — glasblock</h1>
+        <p class="mt-3 text-slate-600">En privat bostad där glasblock valdes för att skapa ett ljust, luftigt badrum med hög integritet.</p>
+
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          <div>
+            <img src="https://vetro.se/wp-content/uploads/2019/01/2_4-2-1199x800.jpg" alt="Privat glasblock" class="w-full rounded-2xl object-cover h-80" />
+          </div>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold">Projektfakta</h2>
+            <p class="text-slate-700">Ett skräddarsytt utförande med måttanpassade block och diskreta profiler. Fokus låg på ljusinsläpp och enkel rengöring i ett boendemiljö.</p>
+            <h3 class="text-lg font-semibold">Resultat</h3>
+            <ul class="list-disc ml-6 text-slate-700">
+              <li>Harmoniskt ljus i hela badrummet</li>
+              <li>Diskret, elegant estetik</li>
+              <li>Lång livslängd och enkel skötsel</li>
+            </ul>
+            <a href="/index.html#contact" class="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg hover:bg-brand/90">Begär offert</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-900 py-12 text-white">
+      <div class="mx-auto max-w-6xl px-6 text-sm">© <span id="year"></span> Vetro AB</div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+</html>
