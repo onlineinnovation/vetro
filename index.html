@@ -262,22 +262,27 @@
               <p><strong>Adress:</strong> Kvistvägen 2, 433 48 Partille</p>
             </div>
           </div>
-          <form action="https://formsubmit.co/wilix1997@gmail.com" method="POST" class="space-y-6 rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
+          <form id="contact-form" action="https://formsubmit.co/4487f33ee8a236eb35a1f6a8c729aca2" method="POST" class="space-y-6 rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
+            <!-- FormSubmit: replace naked email with unique ID and ensure fields have name="..." so values are sent -->
+            <input type="hidden" name="_captcha" value="false" />
+            <!-- Set a subject for the email (will be updated dynamically) and redirect to the production thank-you path -->
+            <input id="_subject" type="hidden" name="_subject" value="Ny förfrågan från Vetro webbplats" />
+            <input type="hidden" name="_next" value="https://duschteknik.se/tack" />
             <div class="space-y-2">
               <label for="name" class="text-sm font-semibold text-slate-700">Namn</label>
-              <input id="name" type="text" placeholder="Ditt namn" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required />
+              <input id="name" name="name" type="text" placeholder="Ditt namn" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required />
             </div>
             <div class="space-y-2">
               <label for="email" class="text-sm font-semibold text-slate-700">E-post</label>
-              <input id="email" type="email" placeholder="namn@foretag.se" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required />
+              <input id="email" name="email" type="email" placeholder="namn@foretag.se" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required />
             </div>
             <div class="space-y-2">
               <label for="company" class="text-sm font-semibold text-slate-700">Företag / Organisation</label>
-              <input id="company" type="text" placeholder="Företag eller organisation" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
+              <input id="company" name="company" type="text" placeholder="Företag eller organisation" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" />
             </div>
             <div class="space-y-2">
               <label for="message" class="text-sm font-semibold text-slate-700">Projektbeskrivning</label>
-              <textarea id="message" rows="4" placeholder="Berätta kort om ert projekt" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required></textarea>
+              <textarea id="message" name="message" rows="4" placeholder="Berätta kort om ert projekt" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20" required></textarea>
             </div>
             <button type="submit" class="w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-brand/90">Skicka förfrågan</button>
             <p class="text-xs text-slate-500">Genom att skicka formuläret godkänner du att vi sparar dina uppgifter för att kunna kontakta dig.</p>
@@ -289,6 +294,20 @@
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+      (function () {
+        // Inject a dynamic subject into the hidden _subject field before submit
+        const form = document.getElementById('contact-form');
+        const subjectInput = document.getElementById('_subject');
+        if (!form || !subjectInput) return;
+        form.addEventListener('submit', function () {
+          const name = (document.getElementById('name') || {}).value || '';
+          const email = (document.getElementById('email') || {}).value || '';
+          let subj = 'Ny förfrågan från Vetro webbplats';
+          if (name) subj += ' — ' + name;
+          if (email) subj += ' (' + email + ')';
+          subjectInput.value = subj;
+        });
+      })();
     </script>
   </body>
 </html>
