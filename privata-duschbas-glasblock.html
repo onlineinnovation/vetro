@@ -31,7 +31,9 @@
       <div class="mx-auto max-w-6xl px-6">
         <!-- Hero -->
         <div class="rounded-3xl overflow-hidden shadow-lg">
-          <img src="https://vetro.se/wp-content/uploads/2019/01/1_4-copy-1199x800.jpg" alt="Privata duschbås med glasblock - hero" class="w-full h-72 object-cover" />
+          <a href="https://vetro.se/wp-content/uploads/2019/01/1_4-copy-1199x800.jpg" class="gallery-item block">
+            <img src="https://vetro.se/wp-content/uploads/2019/01/1_4-copy-1199x800.jpg" alt="Privata duschbås med glasblock - hero" class="w-full h-72 object-cover" />
+          </a>
         </div>
 
         <!-- Main content and gallery -->
@@ -73,19 +75,19 @@
           <!-- Gallery column -->
           <aside class="space-y-4">
             <div class="grid grid-cols-1 gap-4">
-              <a href="https://vetro.se/wp-content/uploads/2019/01/2_4-2-1199x800.jpg" target="_blank" rel="noopener" class="block overflow-hidden rounded-xl">
+              <a href="https://vetro.se/wp-content/uploads/2019/01/2_4-2-1199x800.jpg" class="gallery-item block overflow-hidden rounded-xl">
                 <img src="https://vetro.se/wp-content/uploads/2019/01/2_4-2-1199x800.jpg" alt="Glasblock installation 1" class="w-full h-36 object-cover transition-transform hover:scale-105" />
               </a>
-              <a href="https://vetro.se/wp-content/uploads/2019/01/2_3-2-1199x800.jpg" target="_blank" rel="noopener" class="block overflow-hidden rounded-xl">
+              <a href="https://vetro.se/wp-content/uploads/2019/01/2_3-2-1199x800.jpg" class="gallery-item block overflow-hidden rounded-xl">
                 <img src="https://vetro.se/wp-content/uploads/2019/01/2_3-2-1199x800.jpg" alt="Glasblock installation 2" class="w-full h-36 object-cover transition-transform hover:scale-105" />
               </a>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-              <a href="https://vetro.se/wp-content/uploads/2019/01/1_3-copy-1199x800.jpg" target="_blank" rel="noopener" class="block overflow-hidden rounded-xl">
+              <a href="https://vetro.se/wp-content/uploads/2019/01/1_3-copy-1199x800.jpg" class="gallery-item block overflow-hidden rounded-xl">
                 <img src="https://vetro.se/wp-content/uploads/2019/01/1_3-copy-1199x800.jpg" alt="Glasblock detalj 3" class="w-full h-24 object-cover transition-transform hover:scale-105" />
               </a>
-              <a href="https://vetro.se/wp-content/uploads/2019/01/1_4-copy.jpg" target="_blank" rel="noopener" class="block overflow-hidden rounded-xl">
+              <a href="https://vetro.se/wp-content/uploads/2019/01/1_4-copy.jpg" class="gallery-item block overflow-hidden rounded-xl">
                 <img src="https://vetro.se/wp-content/uploads/2019/01/1_4-copy.jpg" alt="Glasblock detalj 4" class="w-full h-24 object-cover transition-transform hover:scale-105" />
               </a>
             </div>
@@ -111,6 +113,7 @@
 
         <!-- Contact form (copied from main site) -->
         <div class="mt-12">
+          <h2 class="text-2xl font-semibold mb-4">Begär offert</h2>
           <form id="contact-form" action="https://formsubmit.co/4487f33ee8a236eb35a1f6a8c729aca2" method="POST" class="space-y-6 rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
             <!-- FormSubmit fields -->
             <input type="hidden" name="_captcha" value="false" />
@@ -172,20 +175,64 @@
         const submitBtn = document.getElementById('submit-btn');
         const statusEl = document.getElementById('form-status');
         const statusText = document.getElementById('form-status-text');
-        if (!form || !subjectInput) return;
-        form.addEventListener('submit', function () {
-          const name = (document.getElementById('name') || {}).value || '';
-          const company = (document.getElementById('company') || {}).value || '';
-          let subj = 'Förfrågan: ' + name;
-          if (company) subj += ' — ' + company;
-          subjectInput.value = subj;
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+        if (form && subjectInput) {
+          form.addEventListener('submit', function () {
+            const name = (document.getElementById('name') || {}).value || '';
+            const company = (document.getElementById('company') || {}).value || '';
+            let subj = 'Förfrågan: ' + name;
+            if (company) subj += ' — ' + company;
+            subjectInput.value = subj;
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+            }
+            if (statusEl) statusEl.classList.remove('hidden');
+            if (statusText) statusText.textContent = 'Skickar förfrågan… Vi skickar dig vidare.';
+          });
+        }
+
+        // Lightbox gallery
+        const gallery = Array.from(document.querySelectorAll('.gallery-item')).map(el => el.getAttribute('href'));
+        if (gallery.length) {
+          // Create modal
+          const modal = document.createElement('div');
+          modal.id = 'lightbox';
+          modal.className = 'fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50';
+          modal.innerHTML = `
+            <button id="lb-close" class="absolute top-6 right-6 text-white bg-black/50 rounded-full p-2">✕</button>
+            <button id="lb-prev" class="absolute left-6 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-2">◀</button>
+            <img id="lb-image" src="" alt="" class="max-w-5xl max-h-[80vh] object-contain" />
+            <button id="lb-next" class="absolute right-6 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-2">▶</button>
+          `;
+          document.body.appendChild(modal);
+
+          const lbImage = modal.querySelector('#lb-image');
+          const lbClose = modal.querySelector('#lb-close');
+          const lbPrev = modal.querySelector('#lb-prev');
+          const lbNext = modal.querySelector('#lb-next');
+          let current = 0;
+
+          function openLightbox(index) {
+            current = index;
+            lbImage.src = gallery[current];
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
           }
-          if (statusEl) statusEl.classList.remove('hidden');
-          if (statusText) statusText.textContent = 'Skickar förfrågan… Vi skickar dig vidare.';
-        });
+          function closeLightbox() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            lbImage.src = '';
+          }
+          function prev() { current = (current - 1 + gallery.length) % gallery.length; lbImage.src = gallery[current]; }
+          function next() { current = (current + 1) % gallery.length; lbImage.src = gallery[current]; }
+
+          document.querySelectorAll('.gallery-item').forEach((el, i) => el.addEventListener('click', function (e) { e.preventDefault(); openLightbox(i); }));
+          lbClose.addEventListener('click', closeLightbox);
+          lbPrev.addEventListener('click', prev);
+          lbNext.addEventListener('click', next);
+          modal.addEventListener('click', function (e) { if (e.target === modal) closeLightbox(); });
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') prev(); if (e.key === 'ArrowRight') next(); });
+        }
       })();
     </script>
   </body>
